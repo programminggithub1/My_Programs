@@ -1,0 +1,35 @@
+FRN No:- 13J0725/032
+Q1)selsect name,salary from employees  order by salary desc;
+Q2) select name,salary from employees order by salary desc limit 5;
+Q3)select * from employee limit5,offset 3;
+Q4) select did ,count(*) from employees group by did;
+Q5) select did,avg(salary) from employees 
+group by did having avg(salary)>=25000;
+Q6)select * from product where pname='laptop';
+Q7) select left("student_name",3) from student;
+Q8) select * from students name like "A%";
+Q9) select count(*),moth(order_date)from orders
+group by month(order_date) having count(*)>100;
+Q10)select category,sum(amount),avg(amount) from sales
+group by category having avg(amount)>=100000;
+Q11)a) total number of employees
+Q12)b) 8
+Q13)d) group by
+Q14)b) Returns all rows from the left table and matching rows from the right table
+Q15) b)HELLO WORLD
+Q16)SELECT c.region, 
+       SUM(o.total_amount) AS total_order_amount
+       FROM Orders o
+       JOIN Customers c 
+     ON o.customer_id = c.customer_id
+     GROUP BY c.region
+      HAVING SUM(o.total_amount) > 10000;
+Q17) SELECT b.author_id, 
+       SUM(s.quantity) AS total_books_sold
+        FROM Books b
+       JOIN Sales s 
+       ON b.book_id = s.book_id
+       GROUP BY b.author_id
+      HAVING SUM(s.quantity) > 100;
+
+
