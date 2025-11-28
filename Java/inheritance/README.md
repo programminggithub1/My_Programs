@@ -65,21 +65,21 @@ These classes demonstrate arrays, inheritance, overriding, abstract methods, and
 // are part of the bankSystem package.
 
 ▶️ How to Run
-
 Clone the repository:
-
 git clone https://github.com/yourusername/BankManagementSystem.git
 
+Open in:
 
-Open in VS Code, Eclipse, or IntelliJ
+VS Code
+
+IntelliJ
+
+Eclipse
 
 Compile:
-
 javac bank/*.java
 
-
 Run:
-
 java bank.Main
 
 📝 Sample Output
@@ -107,8 +107,9 @@ Add interest calculation scheduler
 
 🤝 Contributing
 
-Pull requests are welcome. For major changes, please open an issue first.
+Pull requests are welcome.
+For major changes, please open an issue first.
 
 📜 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the MIT License
