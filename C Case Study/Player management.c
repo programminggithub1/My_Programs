@@ -11,7 +11,7 @@ typedef struct {
     int matches;
 } Player;
 
-Player *players = NULL;   
+Player *players = NULL;
 int playerCount = 0;
 
 void addPlayer();
@@ -37,33 +37,32 @@ void main() {
         printf("Enter choice: ");
         scanf("%d", &choice);
 
-        if (choice == 1) 
+        if (choice == 1)
             addPlayer();
-        else if (choice == 2) 
+        else if (choice == 2)
             removePlayer();
-        else if (choice == 3) 
+        else if (choice == 3)
             searchPlayer();
-        else if (choice == 4) 
+        else if (choice == 4)
             updatePlayer();
-        else if (choice == 5) 
+        else if (choice == 5)
             displayAllPlayers();
-        else if (choice == 6) 
+        else if (choice == 6)
             displaySortedPlayers();
-        else if (choice == 7) 
+        else if (choice == 7)
             top3Players();
-        else if (choice == 0) 
+        else if (choice == 0)
             printf("Exiting...\n");
-        else 
+        else
             printf("Invalid choice!\n");
     }
 
-    free(players);  
+    free(players);
 }
 
 // Add Player
 void addPlayer() {
     if (players == NULL) {
-      
         players = (Player*)malloc(sizeof(Player));
     } else {
         players = (Player*)realloc(players, (playerCount + 1) * sizeof(Player));
@@ -75,22 +74,27 @@ void addPlayer() {
     }
 
     Player *p = &players[playerCount];
-    p->id = playerCount + 1;
-	printf("Enter id Number: ");
+
+    printf("Enter ID Number: ");
     scanf("%d", &p->id);
+
     printf("Enter Jersey Number: ");
     scanf("%d", &p->jerseyNo);
+
     printf("Enter Player Name: ");
     scanf("%s", p->name);
+
     printf("Enter Runs: ");
     scanf("%d", &p->runs);
+
     printf("Enter Wickets: ");
     scanf("%d", &p->wickets);
+
     printf("Enter Matches Played: ");
     scanf("%d", &p->matches);
 
     playerCount++;
-    printf("? Player added successfully!\n");
+    printf("✔ Player added successfully!\n");
 }
 
 // Remove Player
@@ -100,16 +104,18 @@ void removePlayer() {
         return;
     }
     int id;
-    printf("Enter id Number to remove: ");
+    printf("Enter ID Number to remove: ");
     scanf("%d", &id);
 
     int found = 0;
     for (int i = 0; i < playerCount; i++) {
         if (players[i].id == id) {
             found = 1;
+
             for (int j = i; j < playerCount - 1; j++) {
                 players[j] = players[j + 1];
             }
+
             playerCount--;
 
             if (playerCount == 0) {
@@ -119,12 +125,12 @@ void removePlayer() {
                 players = (Player*)realloc(players, playerCount * sizeof(Player));
             }
 
-            printf("? Player removed successfully!\n");
+            printf("✔ Player removed successfully!\n");
             break;
         }
     }
     if (!found) {
-        printf("? Player not found!\n");
+        printf("✘ Player not found!\n");
     }
 }
 
@@ -134,18 +140,19 @@ void searchPlayer() {
         printf("No players available!\n");
         return;
     }
-        int id;
-        printf("Enter id Number: ");
-        scanf("%d", &id);
-        for (int i = 0; i < playerCount; i++) {
-            if (players[i].id == id) {
-                printf("Found: ID:%d | Jersey:%d | Name:%s | Runs:%d | Wickets:%d | Matches:%d\n",
-                       players[i].id, players[i].jerseyNo, players[i].name,
-                       players[i].runs, players[i].wickets, players[i].matches);
-                return;
-            }
+    int id;
+    printf("Enter ID Number: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < playerCount; i++) {
+        if (players[i].id == id) {
+            printf("Found: ID:%d | Jersey:%d | Name:%s | Runs:%d | Wickets:%d | Matches:%d\n",
+                   players[i].id, players[i].jerseyNo, players[i].name,
+                   players[i].runs, players[i].wickets, players[i].matches);
+            return;
         }
-    printf("? Player not found!\n");
+    }
+    printf("✘ Player not found!\n");
 }
 
 // Update Player
@@ -162,15 +169,18 @@ void updatePlayer() {
         if (players[i].jerseyNo == jersey) {
             printf("Enter New Runs: ");
             scanf("%d", &players[i].runs);
+
             printf("Enter New Wickets: ");
             scanf("%d", &players[i].wickets);
+
             printf("Enter New Matches: ");
             scanf("%d", &players[i].matches);
-            printf("? Player updated successfully!\n");
+
+            printf("✔ Player updated successfully!\n");
             return;
         }
     }
-    printf("? Player not found!\n");
+    printf("✘ Player not found!\n");
 }
 
 // Display All Players
@@ -187,7 +197,7 @@ void displayAllPlayers() {
     }
 }
 
-// Display Sorted Players 
+// Display Sorted Players
 void displaySortedPlayers() {
     if (playerCount == 0) {
         printf("No players available!\n");
@@ -201,6 +211,7 @@ void displaySortedPlayers() {
     for (int i = 0; i < playerCount - 1; i++) {
         for (int j = 0; j < playerCount - i - 1; j++) {
             int swap = 0;
+
             if (choice == 1 && players[j].runs > players[j + 1].runs) swap = 1;
             else if (choice == 2 && players[j].wickets > players[j + 1].wickets) swap = 1;
 
@@ -211,17 +222,18 @@ void displaySortedPlayers() {
             }
         }
     }
+
     displayAllPlayers();
 }
 
-// Display Top 3 Players
+// Top 3 Players
 void top3Players() {
     if (playerCount < 3) {
         printf("Not enough players to show top 3!\n");
         return;
     }
 
-    // Sort by Runs 
+    // Sort by Runs (Descending)
     for (int i = 0; i < playerCount - 1; i++) {
         for (int j = 0; j < playerCount - i - 1; j++) {
             if (players[j].runs < players[j + 1].runs) {
@@ -231,12 +243,14 @@ void top3Players() {
             }
         }
     }
+
     printf("\nTop 3 Players by Runs:\n");
     for (int i = 0; i < 3; i++) {
-        printf("jersyno::%d name::%s Runs:: %d\n", players[i].jerseyNo,players[i].name, players[i].runs);
+        printf("Jersey:%d | Name:%s | Runs:%d\n",
+               players[i].jerseyNo, players[i].name, players[i].runs);
     }
 
-    // Sort by Wickets 
+    // Sort by Wickets (Descending)
     for (int i = 0; i < playerCount - 1; i++) {
         for (int j = 0; j < playerCount - i - 1; j++) {
             if (players[j].wickets < players[j + 1].wickets) {
@@ -246,8 +260,10 @@ void top3Players() {
             }
         }
     }
+
     printf("\nTop 3 Players by Wickets:\n");
     for (int i = 0; i < 3; i++) {
-        printf("jersyno::%d name::%s Wickets:: %d\n",players[i].jerseyNo, players[i].name, players[i].wickets);
+        printf("Jersey:%d | Name:%s | Wickets:%d\n",
+               players[i].jerseyNo, players[i].name, players[i].wickets);
     }
 }
