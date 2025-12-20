@@ -49,9 +49,6 @@ Displays the **Top 3 players** based on:
 └── 📁 C Programming
 └── Player Management.c
 
-yaml
-Copy code
-
 ---
 
 ## 📸 Output (Sample)
@@ -73,9 +70,6 @@ Display Sorted Players
 Display Top 3 Players
 
 Exit
-
-yaml
-Copy code
 
 ---
 
